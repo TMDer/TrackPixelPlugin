@@ -1,8 +1,8 @@
 {
-  "name": "InOtherWords",
+  "name": "TrackPixelPlugin",
   "version": "0.0.2",
   "manifest_version": 2,
-  "description": "InOtherWords Chrome Extension",
+  "description": "Track Pixel Plugin",
   "icons": {
     "16": "T.png",
     "48": "T.png",
@@ -16,7 +16,7 @@
   },
   "browser_action": {
     "default_icon": "T.png",
-    "default_title": "InOtherWords"
+    "default_title": "TrackPixelPlugin"
   },
   "permissions": [
     "https://*/*",
