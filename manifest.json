@@ -16,7 +16,8 @@
   },
   "browser_action": {
     "default_icon": "T.png",
-    "default_title": "TrackPixelPlugin"
+    "default_title": "TrackPixelPlugin",
+    "default_popup": "popup.html"
   },
   "permissions": [
     "https://*/*",
