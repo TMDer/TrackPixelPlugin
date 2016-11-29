@@ -1,6 +1,10 @@
-#view {
+#view, .viewBlock {
   height: auto;
   padding: 20px;
   width: 280px;
+}
+
+#viewMemberRegist {
+  display: none;
 }
 
