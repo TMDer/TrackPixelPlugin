@@ -103,7 +103,6 @@ var TrackPixelSetupWizard = (function() {
     var length = _keys.length - 1;
     var index = _keys.indexOf(_tempStep);
 
-    //TODO: 判斷購物或是註冊會員已設定完成
     if (index === length) {
       if (length > 3)
         _isPurchaseDone = true;
