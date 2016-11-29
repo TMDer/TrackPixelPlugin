@@ -38,10 +38,36 @@ function initSetupWizardBtns(div) {
   }
 }
 
+function isEditView(value) {
+  return typeof value === "object";
+}
+
+function generateEditView(currentSetupWizard, div) {
+  var keys = Object.keys(currentSetupWizard.data);
+  var eleUl = document.createElement("ul");
+
+  for (var index = 0; index < keys.length; index++) {
+    var key = keys[index];
+    var data = currentSetupWizard.data[key];
+
+    var eleLi = document.createElement("li");
+    var textNode = document.createTextNode(key + " : " + data);
+    eleLi.appendChild(textNode);
+    eleUl.appendChild(eleLi);
+  }
+
+  div.insertBefore(eleUl, div.firstElementChild);
+}
+
 function showView(currentSetupWizard) {
   var elementId = currentSetupWizard.currentStep;
   var div = document.getElementById(elementId);
   div.style.display = "block";
+
+  if (isEditView(currentSetupWizard.data)) {
+    generateEditView(currentSetupWizard, div);
+  }
+
   return div;
 }
 

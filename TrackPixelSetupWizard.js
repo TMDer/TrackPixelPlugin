@@ -145,6 +145,7 @@ var TrackPixelSetupWizard = (function() {
       return;
 
     _data[_target][_tempStep] = message.data;
+    initCurrentSetupWizard(_tempStep);
   }
 
   function isForwardPurchaseOrRegister(target) {
