@@ -17,6 +17,7 @@ var TrackPixelSetupWizard = (function() {
       "setup-wizard-product0-view": false,
       "setup-wizard-product1-view": false,
       "setup-wizard-product-edit": null,
+      "setup-wizard-product-selector": null,
       "setup-wizard-checkout-flow-view": false,
       "setup-wizard-checkout-flow-edit": null,
       "setup-wizard-checkout-flow-next-step-view": false,
@@ -99,13 +100,16 @@ var TrackPixelSetupWizard = (function() {
   }
 
   function getNextStep() {
-    var length = _keys.length;
+    var length = _keys.length - 1;
     var index = _keys.indexOf(_tempStep);
 
     //TODO: 判斷購物或是註冊會員已設定完成
     if (index === length) {
-      console.error("!!!!! error index === length");
-      return _tempStep;
+      if (length > 3)
+        _isPurchaseDone = true;
+      else
+        _isRegisterDone = true;
+      return "setup-wizard-start-view";
     }
 
     return _keys[index + 1];
@@ -141,7 +145,7 @@ var TrackPixelSetupWizard = (function() {
     if (isForwardPurchaseOrRegister(message.target))
       return;
 
-    console.log("save done.");
+    _data[_target][_tempStep] = message.data;
   }
 
   function isForwardPurchaseOrRegister(target) {
@@ -174,8 +178,12 @@ var TrackPixelSetupWizard = (function() {
   }
 
   _self.process = function(message) {
-    save(message);
     forward(message.target);
+    save(message);
+
+    if(_tempStep.includes("selector"))
+      forward(message.target);
+
     return true;
   }
 
