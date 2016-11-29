@@ -8,10 +8,11 @@ function getTargetByBtnClassName(btnClassName) {
   return "purchase";
 }
 
-function triggerContentScriptUpdateSetupWizard(target, cb) {
+function triggerContentScriptUpdateSetupWizard(currentView, target, cb) {
   var message = {
     action: "process",
-    target: target
+    target: target,
+    currentView: currentView
   };
 
   chrome.tabs.query({
@@ -24,6 +25,7 @@ function triggerContentScriptUpdateSetupWizard(target, cb) {
 
 function initSetupWizardBtns(div) {
   var setupWizardBtns = div.querySelectorAll("button");
+  var divId = div.id;
 
   for (var index = 0; index < setupWizardBtns.length; index++) {
     var setupWizardBtn = setupWizardBtns[index];
@@ -31,7 +33,7 @@ function initSetupWizardBtns(div) {
     var target = getTargetByBtnClassName(btnClassName);
 
     setupWizardBtn.addEventListener("click", function () {
-      triggerContentScriptUpdateSetupWizard(target, showSetupWizard);
+      triggerContentScriptUpdateSetupWizard(divId, target, showSetupWizard);
     });
 
   }

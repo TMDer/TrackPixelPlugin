@@ -29,10 +29,38 @@ var TrackPixelSetupWizard = (function() {
     }
   }
 
+  var _processfunctions = {
+    "setup-wizard-product1-view": collectProduct
+  }
+
   var _keys = Object.keys(_data);
 
   var _self = {};
 
+
+  /** ====================================================================
+   **                 private method for selector
+   ** ====================================================================
+   */
+
+  function collectProduct() {
+    var productName = document.querySelectorAll(".product-text strong")[0].textContent;
+    var productType = $(".breadcrumb span").text();
+    var price = document.querySelectorAll(".price-2 span")[1].textContent;
+    document.getElementsByClassName("btn btn-red btn-mm shopping-btn")[0].style.border="blue 10px solid";
+    document.getElementsByClassName("btn btn-gray btn-mm favorites-btn")[0].style.border="yellow 10px solid";
+
+    var result = {
+      productId: "1111",
+      productName: productName,
+      productType: productType,
+      price: price,
+      shoppingCart: "blue",
+      favorites: "yellow"
+    }
+
+    return result;
+  }
 
 
   /** ====================================================================
@@ -111,8 +139,12 @@ var TrackPixelSetupWizard = (function() {
    ** ====================================================================
    */
 
-  _self.collectData = function() {
-    return {};
+  _self.collectData = function(message) {
+    var collect = _processfunctions[message.currentView];
+
+    if (!collect) return;
+
+    return collect();
   }
 
 
