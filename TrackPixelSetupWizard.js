@@ -44,8 +44,23 @@ var TrackPixelSetupWizard = (function() {
    */
 
   function collectProduct() {
+
+    function getProductType(selector) {
+      var nodeList = document.querySelectorAll(selector);
+      var result = "";
+      var node = null;
+
+      for (var index = 0; index < nodeList.length; index++) {
+        node = nodeList[index];
+        result = result.concat(node.textContent);
+      }
+
+      return result;
+    }
+
     var productName = document.querySelectorAll(".product-text strong")[0].textContent;
-    var productType = $(".breadcrumb span").text();
+
+    var productType = getProductType(".breadcrumb span");
     var price = document.querySelectorAll(".price-2 span")[1].textContent;
     document.getElementsByClassName("btn btn-red btn-mm shopping-btn")[0].style.border="blue 10px solid";
     document.getElementsByClassName("btn btn-gray btn-mm favorites-btn")[0].style.border="yellow 10px solid";
@@ -122,8 +137,8 @@ var TrackPixelSetupWizard = (function() {
     // _setupWizard = localStorageData;
   }
 
-  function save(data) {
-    if (isForwardPurchaseOrRegister(data.target))
+  function save(message) {
+    if (isForwardPurchaseOrRegister(message.target))
       return;
 
     console.log("save done.");
@@ -158,9 +173,9 @@ var TrackPixelSetupWizard = (function() {
     return _currentSetupWizard;
   }
 
-  _self.process = function(data) {
-    save(data);
-    forward(data.target);
+  _self.process = function(message) {
+    save(message);
+    forward(message.target);
     return true;
   }
 
