@@ -31,7 +31,8 @@ var TrackPixelSetupWizard = (function() {
   }
 
   var _processfunctions = {
-    "setup-wizard-product1-view": collectProduct
+    "setup-wizard-product1-view": collectProduct,
+    "setup-wizard-register-view": collectRegist
   }
 
   var _keys = Object.keys(_data);
@@ -73,6 +74,19 @@ var TrackPixelSetupWizard = (function() {
       price: price,
       shoppingCart: "blue",
       favorites: "yellow"
+    }
+
+    return result;
+  }
+
+  function collectRegist() {
+
+    document.getElementById("account").style.border="blue 10px solid";
+    document.getElementById("submit").style.border="yellow 10px solid";
+
+    var result = {
+      memberAccount: "blue",
+      BtnRegist: "yellow"
     }
 
     return result;
