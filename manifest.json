@@ -10,6 +10,7 @@
   },
   "background": {
     "scripts": [
+      "TrackPixelSetupWizard.js",
       "background.js"
     ],
     "persistent": true
@@ -20,6 +21,10 @@
     "default_popup": "popup.html"
   },
   "permissions": [
+    "tabs",
+    "cookies",
+    "webRequest",
+    "webRequestBlocking",
     "https://*/*",
     "http://*/*"
   ],
@@ -30,6 +35,7 @@
         "http://*/*"
       ],
       "js": [
+        "TrackPixelSetupWizard.js",
         "inject.js"
       ],
       "css": [
