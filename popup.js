@@ -1,11 +1,8 @@
 
 
 
-//TODO: refactor action name by regexp
 function getTargetByBtnClassName(btnClassName) {
-  btnClassName = btnClassName || "setup-wizard-purchase-btn";
-
-  return "purchase";
+  return btnClassName.replace(/.*-(.*)-btn/,"$1");
 }
 
 function triggerContentScriptUpdateSetupWizard(currentView, target, cb) {
@@ -28,12 +25,14 @@ function initSetupWizardBtns(div) {
   var divId = div.id;
 
   for (var index = 0; index < setupWizardBtns.length; index++) {
+
     var setupWizardBtn = setupWizardBtns[index];
-    var btnClassName = setupWizardBtn.className;
-    var target = getTargetByBtnClassName(btnClassName);
 
     setupWizardBtn.addEventListener("click", function () {
+      var btnClassName = this.className;
+      var target = getTargetByBtnClassName(btnClassName);
       triggerContentScriptUpdateSetupWizard(divId, target, showSetupWizard);
+
     });
 
   }
