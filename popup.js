@@ -41,10 +41,10 @@ function initSetupWizardBtns(div, currentSetupWizard) {
     return;
 
   if (currentSetupWizard._isPurchaseDone)
-    setupWizardBtns[0].style.background='yellow';
+    setupWizardBtns[0].style.background="yellow";
 
   if (currentSetupWizard._isRegisterDone)
-    setupWizardBtns[1].style.background='yellow';
+    setupWizardBtns[1].style.background="yellow";
 
 }
 
