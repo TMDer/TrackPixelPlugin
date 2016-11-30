@@ -133,6 +133,8 @@ var TrackPixelSetupWizard = (function() {
 
     _currentSetupWizard = {
       currentStep: tempStep,
+      _isPurchaseDone: _isPurchaseDone,
+      _isRegisterDone: _isRegisterDone,
       data: data
     }
   }
@@ -142,7 +144,7 @@ var TrackPixelSetupWizard = (function() {
     var index = _keys.indexOf(_tempStep);
 
     if (index === length) {
-      if (length > 3)
+      if (_target === "purchase")
         _isPurchaseDone = true;
       else
         _isRegisterDone = true;
