@@ -34,7 +34,7 @@ var TrackPixelSetupWizard = (function() {
     "setup-wizard-product1-view": collectProduct,
     "setup-wizard-checkout-flow-view": collectCheckout,
     "setup-wizard-register-view": collectRegist,
-    "setup-wizard-purchase-edit": collectPurchase
+    "setup-wizard-checkout-flow-next-step-ask": collectPurchase
   }
 
   var _keys = Object.keys(_data);
