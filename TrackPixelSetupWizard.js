@@ -21,7 +21,7 @@ var TrackPixelSetupWizard = (function() {
       "setup-wizard-checkout-flow-view": false,
       "setup-wizard-checkout-flow-edit": null,
       "setup-wizard-checkout-flow-next-step-view": false,
-      "setup-wizard-checkout-flow-next-step-edit": null,
+      "setup-wizard-checkout-flow-next-step-ask": null,
       "setup-wizard-purchase-edit": null,
     },
     "register":{
