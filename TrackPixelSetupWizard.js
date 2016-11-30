@@ -32,6 +32,7 @@ var TrackPixelSetupWizard = (function() {
 
   var _processfunctions = {
     "setup-wizard-product1-view": collectProduct,
+    "setup-wizard-checkout-flow-view": collectCheckout,
     "setup-wizard-register-view": collectRegist
   }
 
@@ -88,6 +89,29 @@ var TrackPixelSetupWizard = (function() {
       memberAccount: "blue",
       BtnRegist: "yellow"
     }
+
+    return result;
+  }
+
+  function collectCheckout() {
+    var result = {};
+    var trList = document.querySelectorAll(".shop-detail-table .tbody");
+
+    function getTdValue(tdList, index) {
+       return tdList[index].textContent;
+    }
+
+    for (var index = 0; index < trList.length; index++) {
+      var tdList = trList[index].querySelectorAll("td");
+      var productName = getTdValue(tdList, 0);
+      var productAmount = getTdValue(tdList, 2);
+      var productPrice = getTdValue(tdList, 5);
+      result["item" + index] = "品項： " + productName + "    " + "數量： " + productAmount + "    " + "金額： " + productPrice;
+    }
+
+    result["totalPrice"] = document.getElementById("afterTotalPrice2").textContent;
+    result["payerPhone"] = document.getElementsByName("shippingMobile")[0].value;
+    result["paymentMethod"] = document.getElementsByClassName("payButton payNameBtn atmOrCredit payButtonActive")[0].textContent;
 
     return result;
   }
