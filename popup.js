@@ -20,7 +20,7 @@ function triggerContentScriptUpdateSetupWizard(currentView, target, cb) {
   });
 }
 
-function initSetupWizardBtns(div) {
+function initSetupWizardBtns(div, currentSetupWizard) {
   var setupWizardBtns = div.querySelectorAll("button");
   var divId = div.id;
 
@@ -36,6 +36,16 @@ function initSetupWizardBtns(div) {
     });
 
   }
+
+  if (currentSetupWizard.currentStep !== "setup-wizard-start-view")
+    return;
+
+  if (currentSetupWizard._isPurchaseDone)
+    setupWizardBtns[0].style.background='yellow';
+
+  if (currentSetupWizard._isRegisterDone)
+    setupWizardBtns[1].style.background='yellow';
+
 }
 
 function isEditView(value) {
@@ -85,7 +95,7 @@ function hideAllView() {
 function initView(currentSetupWizard) {
   hideAllView();
   var div = showView(currentSetupWizard);
-  initSetupWizardBtns(div);
+  initSetupWizardBtns(div, currentSetupWizard);
 }
 
 function showSetupWizard() {
